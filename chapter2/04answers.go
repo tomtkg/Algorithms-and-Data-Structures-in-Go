@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	a := []int{6, 9, 3, 8, 7, 5, 4, 2, 1} // 配列データ
+	a := []int{6, 9, 3, 8, 7, 5, 4, 2, 1} //配列データ
 
 	for _, f := range []func(a []int){
 		selectionSort,
