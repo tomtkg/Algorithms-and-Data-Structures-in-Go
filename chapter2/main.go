@@ -2,33 +2,27 @@ package main
 
 import (
 	"fmt"
-	"reflect"
-	"runtime"
-	"strings"
 )
 
 func main() {
-	a := []int{6, 9, 3, 8, 7, 5, 4, 2, 1} //配列データ
-
-	for _, f := range []func(a []int){
+	functions := []func(a []int){
 		selectionSort,
 		insertionSort,
 		bubbleSort,
+	}
+	for str, a := range map[string][]int{
+		"問2.":  {13, 22, 12, 10, 29, 14, 20, 18, 24, 28},
+		"章末問題": {6, 9, 3, 8, 7, 5, 4, 2, 1},
 	} {
-		printFunctionName(f)
-		copy := append([]int{}, a...) //deep copy
-		fmt.Println(copy)             //ソート前の配列を表示
-		f(copy)
+		for i, f := range functions {
+			fmt.Printf("%s%d\n", str, i+1)
+			f(append([]int{}, a...))
+		}
 	}
 }
 
-func printFunctionName(f interface{}) {
-	name := runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
-	arr := strings.Split(name, ".")
-	fmt.Println(arr[len(arr)-1])
-}
-
 func selectionSort(a []int) {
+	fmt.Println(a) //ソート前の配列を表示
 	for i := 0; i < len(a)-1; i++ {
 		k := i
 		for j := i + 1; j < len(a); j++ {
@@ -44,6 +38,7 @@ func selectionSort(a []int) {
 }
 
 func insertionSort(a []int) {
+	fmt.Println(a) //ソート前の配列を表示
 	for i := 1; i < len(a); i++ {
 		temp := a[i]
 		j := i
@@ -60,6 +55,7 @@ func insertionSort(a []int) {
 }
 
 func bubbleSort(a []int) {
+	fmt.Println(a) //ソート前の配列を表示
 	for i := 0; i < len(a)-1; i++ {
 		for j := len(a) - 1; j > i; j-- {
 			if a[j-1] > a[j] {
