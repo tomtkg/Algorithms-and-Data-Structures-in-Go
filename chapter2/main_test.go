@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func ExampleSelectionSort() {
+func Example_selectionSort() {
 	selectionSort([]int{4, 2, 3, 1}) //2line
 	fmt.Println()
 	selectionSort([]int{2, 3, 4, 1}) //4line
@@ -21,7 +21,7 @@ func ExampleSelectionSort() {
 	// [1 2 3 4]
 }
 
-func ExampleInsertionSort() {
+func Example_insertionSort() {
 	insertionSort([]int{4, 2, 3, 1}) //4line
 	fmt.Println()
 	insertionSort([]int{2, 3, 4, 1}) //2line
@@ -40,7 +40,7 @@ func ExampleInsertionSort() {
 	// [1 2 3 4]
 }
 
-func ExampleBubbleSort() {
+func Example_bubbleSort() {
 	bubbleSort([]int{4, 2, 3, 1}) //6line
 	fmt.Println()
 	bubbleSort([]int{2, 3, 4, 1}) //4line

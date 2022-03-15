@@ -4,26 +4,26 @@ import (
 	"os"
 )
 
-func ExampleMain() {
+func Example_main() {
 	main()
 	// Output:
 }
 
-func ExampleMainA() {
+func Example_mainA() {
 	os.Args[1] = "a"
 	main()
 	// Output:
 	// 55
 }
 
-func ExampleMainB() {
+func Example_mainB() {
 	os.Args[1] = "b"
 	main()
 	// Output:
 	// 55
 }
 
-func ExampleMainC() {
+func Example_mainC() {
 	os.Args[1] = "c"
 	main()
 	// Output:
