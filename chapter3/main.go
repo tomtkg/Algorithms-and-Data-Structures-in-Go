@@ -31,6 +31,9 @@ func radixSort(nums []int) {
 }
 
 func getSpecifiedDigit(num, i int) int {
+	if num < 0 {
+		num = -num
+	}
 	switch i {
 	case 1:
 		return num % 10
