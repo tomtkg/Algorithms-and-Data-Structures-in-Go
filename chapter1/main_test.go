@@ -1,30 +1,13 @@
 package main
 
-import (
-	"os"
-)
-
-func Example_main() {
-	main()
-	// Output:
-}
-
-func Example_mainA() {
-	os.Args[1] = "a"
-	main()
+func Example_a() {
+	a()
 	// Output:
 	// 55
 }
 
-func Example_mainB() {
-	os.Args[1] = "b"
-	main()
+func Example_b() {
+	b()
 	// Output:
 	// 55
-}
-
-func Example_mainC() {
-	os.Args[1] = "c"
-	main()
-	// Output:
 }
