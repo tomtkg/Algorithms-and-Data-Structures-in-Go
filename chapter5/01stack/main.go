@@ -9,8 +9,13 @@ import (
 
 const STACKSIZE = 10 //スタックサイズ
 
-var stack = [STACKSIZE]float64{} //スタック用配列
-var sp = 0                       //スタックポインタの初期化
+var stack [STACKSIZE]float64 //スタック用配列
+var sp int                   //スタックポインタの初期化
+
+func initStack() {
+	stack = [STACKSIZE]float64{} //スタック用配列
+	sp = 0                       //スタックポインタの初期化
+}
 
 //データをスタックにpushする関数
 func push(data float64) int {
@@ -37,6 +42,7 @@ func pop(data *float64) int {
 func main() {
 	var data float64         //入力データ
 	var data1, data2 float64 //計算用
+	initStack()
 	s := bufio.NewScanner(os.Stdin)
 
 	//EOFまで入力を繰り返し
