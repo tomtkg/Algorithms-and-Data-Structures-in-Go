@@ -31,7 +31,7 @@ func main() {
 			for ; b[i] != 0; i = ff(i, s) {
 			}
 			b[i] = 1
-			fmt.Printf("%s:%d, ", s, i)
+			fmt.Printf(" %s:%d,", s, i)
 		}
 		fmt.Println()
 	}
