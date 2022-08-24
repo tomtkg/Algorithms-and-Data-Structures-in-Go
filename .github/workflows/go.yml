@@ -1,25 +1,24 @@
 name: Go
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
-
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
     - uses: actions/checkout@v3
-
-    - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
+        go-version: 1.19
 
     - name: Build
       run: go build -v ./...
-
     - name: Test
       run: go test -v ./...
+    - name: Mod
+      run: |
+          go mod tidy
+          git diff --exit-code -s go.mod go.sum
