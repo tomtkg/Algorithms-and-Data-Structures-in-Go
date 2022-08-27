@@ -4,17 +4,26 @@ import (
 	"fmt"
 )
 
+var num int
+
+func print(x interface{}) {
+	fmt.Printf("(%d) %v\n", num, x)
+	num++
+}
+
 func main() {
 	functions := []func(a []int){
 		selectionSort,
 		insertionSort,
 		bubbleSort,
 	}
-	for str, a := range map[string][]int{
+	problems := map[string][]int{
 		"問2.":  {13, 22, 12, 10, 29, 14, 20, 18, 24, 28},
 		"章末問題": {6, 9, 3, 8, 7, 5, 4, 2, 1},
-	} {
+	}
+	for str, a := range problems {
 		for i, f := range functions {
+			num = 0
 			fmt.Printf("%s%d\n", str, i+1)
 			f(append([]int{}, a...))
 		}
@@ -22,7 +31,7 @@ func main() {
 }
 
 func selectionSort(a []int) {
-	fmt.Println(a) //ソート前の配列を表示
+	print(a) //ソート前の配列を表示
 	for i := 0; i < len(a)-1; i++ {
 		k := i
 		for j := i + 1; j < len(a); j++ {
@@ -32,13 +41,13 @@ func selectionSort(a []int) {
 		}
 		if k != i {
 			a[i], a[k] = a[k], a[i] //検索範囲の最初の要素と交換
-			fmt.Println(a)          //最少要素選択後の配列を表示
+			print(a)                //最少要素選択後の配列を表示
 		}
 	}
 }
 
 func insertionSort(a []int) {
-	fmt.Println(a) //ソート前の配列を表示
+	print(a) //ソート前の配列を表示
 	for i := 1; i < len(a); i++ {
 		temp := a[i]
 		j := i
@@ -48,19 +57,19 @@ func insertionSort(a []int) {
 			j = j - 1
 		}
 		if j != i {
-			a[j] = temp    //ここに挿入する
-			fmt.Println(a) //挿入後の配列を表示
+			a[j] = temp //ここに挿入する
+			print(a)    //挿入後の配列を表示
 		}
 	}
 }
 
 func bubbleSort(a []int) {
-	fmt.Println(a) //ソート前の配列を表示
+	print(a) //ソート前の配列を表示
 	for i := 0; i < len(a)-1; i++ {
 		for j := len(a) - 1; j > i; j-- {
 			if a[j-1] > a[j] {
 				a[j-1], a[j] = a[j], a[j-1]
-				fmt.Println(a) //交換後の配列を表示
+				print(a) //交換後の配列を表示
 			}
 		}
 	}
