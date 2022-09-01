@@ -32,7 +32,6 @@ func main() {
 				count++
 			}
 		}
-
 		fmt.Println(nums) //i桁目までソート後の配列を表示
 	}
 }

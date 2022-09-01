@@ -6,11 +6,9 @@ const digit = 3 //3桁までの自然数が対象
 
 // 基数ソート法：radix sort
 func main() {
-	radixSort([]int{523, 39, 785, 257, 351, 616, 292, 788, 802})
-}
-
-func radixSort(nums []int) {
+	nums := []int{523, 39, 785, 257, 351, 616, 292, 788, 802}
 	fmt.Println(nums) //ソート前の配列を表示
+
 	for i := 1; i <= digit; i++ {
 		a := [10][]int{} // 10個の容器を用意(a[0]〜a[9])
 		//各数値を対応する容器に格納
