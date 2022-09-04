@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"mylib"
 )
 
 var num int
@@ -17,15 +18,15 @@ func main() {
 		insertionSort,
 		bubbleSort,
 	}
-	problems := map[string][]int{
-		"問2.":  {13, 22, 12, 10, 29, 14, 20, 18, 24, 28},
-		"章末問題": {6, 9, 3, 8, 7, 5, 4, 2, 1},
+	problems := []mylib.Tuple[string, []int]{
+		{V1: "問2.", V2: []int{13, 22, 12, 10, 29, 14, 20, 18, 24, 28}},
+		{V1: "章末問題", V2: []int{6, 9, 3, 8, 7, 5, 4, 2, 1}},
 	}
-	for str, a := range problems {
+	for _, p := range problems {
 		for i, f := range functions {
 			num = 0
-			fmt.Printf("%s%d\n", str, i+1)
-			f(append([]int{}, a...))
+			fmt.Printf("%s%d\n", p.V1, i+1)
+			f(append([]int{}, p.V2...))
 		}
 	}
 }
