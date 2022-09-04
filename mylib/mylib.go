@@ -9,6 +9,11 @@ import (
 	"strings"
 )
 
+type Tuple[T1, T2 any] struct {
+	V1 T1
+	V2 T2
+}
+
 func PrintFuncName(f interface{}) {
 	name := runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
 	arr := strings.Split(name, ".")
