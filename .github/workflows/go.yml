@@ -1,11 +1,7 @@
 name: Go
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -13,8 +9,5 @@ jobs:
     - uses: actions/setup-go@v3
       with:
         go-version: 1.19
-
-    - name: Build
-      run: go build -v ./...
-    - name: Test
-      run: go test -count=1 -shuffle=on -v ./...
+    - run: go build -v ./...
+    - run: go test -count=1 -shuffle=on -v ./...
