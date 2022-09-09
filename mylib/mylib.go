@@ -27,3 +27,10 @@ func SetStdin(x interface{}) {
 	w.Close()
 	os.Stdin = r
 }
+
+func SetString(x string) {
+	r, w, _ := os.Pipe()
+	w.Write([]byte(x))
+	w.Close()
+	os.Stdin = r
+}
