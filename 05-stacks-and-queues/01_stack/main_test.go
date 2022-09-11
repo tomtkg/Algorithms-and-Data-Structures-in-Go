@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	"mylib"
 	"testing"
 )
 
@@ -40,19 +40,13 @@ func Test_popB(t *testing.T) {
 	}
 }
 func Example_mainA() {
-	r, w, _ := os.Pipe()
-	w.Write([]byte("1.2\n3.4\n1.6\n+\n*"))
-	w.Close()
-	os.Stdin = r
+	mylib.SetString("1.2\n3.4\n1.6\n+\n*")
 	main()
 	// Output:
 	// 6.00
 }
 func Example_mainB() {
-	r, w, _ := os.Pipe()
-	w.Write([]byte("1.7\n2.8\n+\n2.5\n4.7\n-\n*\n-0.1\n+"))
-	w.Close()
-	os.Stdin = r
+	mylib.SetString("1.7\n2.8\n+\n2.5\n4.7\n-\n*\n-0.1\n+")
 	main()
 	// Output:
 	// -10.00

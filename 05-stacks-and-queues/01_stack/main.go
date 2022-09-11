@@ -12,12 +12,19 @@ const STACKSIZE = 10 //スタックサイズ
 var stack [STACKSIZE]float64 //スタック用配列
 var sp int                   //スタックポインタの初期化
 
+var m = map[string]func(float64, float64) float64{
+	"+": func(x, y float64) float64 { return x + y }, //加算
+	"-": func(x, y float64) float64 { return x - y }, //減算
+	"*": func(x, y float64) float64 { return x * y }, //乗算
+	"/": func(x, y float64) float64 { return x / y }, //除算
+}
+
 func initStack() {
 	stack = [STACKSIZE]float64{} //スタック用配列
 	sp = 0                       //スタックポインタの初期化
 }
 
-//データをスタックにpushする関数
+// データをスタックにpushする関数
 func push(data float64) int {
 	if sp >= STACKSIZE { //スタックポインタの示す位置が範囲内かどうか
 		return 0
@@ -28,7 +35,7 @@ func push(data float64) int {
 	}
 }
 
-//スタックからデータをpopする関数
+// スタックからデータをpopする関数
 func pop(data *float64) int {
 	if sp <= 0 { //スタックが空かどうか
 		return 0
@@ -52,28 +59,18 @@ func main() {
 		if data, err := strconv.ParseFloat(str, 64); err != nil {
 			//演算子の場合，スタックのデータ二つを取り出す
 			if pop(&data2) == 1 && pop(&data1) == 1 {
-				switch str {
-				case "+": //加算
-					push(data1 + data2)
-				case "-": //減算
-					push(data1 - data2)
-				case "*": //乗算
-					push(data1 * data2)
-				case "/": //除算
-					push(data1 / data2)
-				default:
-					fmt.Fprintln(os.Stderr, "Unknown operator")
-					os.Exit(1)
+				if f, ok := m[str]; ok {
+					push(f(data1, data2))
+				} else {
+					panic("Unknown operator")
 				}
 			} else {
-				fmt.Fprintln(os.Stderr, "Stack underflow")
-				os.Exit(1)
+				panic("Stack underflow")
 			}
 		} else {
 			//数字の場合，データをスタックに入れる
 			if push(data) == 0 {
-				fmt.Fprintln(os.Stderr, "Stack overflow")
-				os.Exit(1)
+				panic("Stack overflow")
 			}
 		}
 	}

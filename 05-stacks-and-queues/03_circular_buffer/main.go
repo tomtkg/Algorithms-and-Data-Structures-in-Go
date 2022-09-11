@@ -20,7 +20,7 @@ func initQueue() {
 	length = 0                   //行列の長さの初期化
 }
 
-//データをキューにenqueueする関数
+// データをキューにenqueueする関数
 func enqueue(data float64) int {
 	if length >= QUEUESIZE { //データの長さが，キューのサイズ以上かどうか
 		return 0
@@ -32,7 +32,7 @@ func enqueue(data float64) int {
 	}
 }
 
-//キューからデータをdequeueする関数
+// キューからデータをdequeueする関数
 func dequeue(data *float64) int {
 	if length <= 0 { //キューにデータが残っているかどうか
 		return 0
@@ -46,25 +46,14 @@ func dequeue(data *float64) int {
 
 func main() {
 	seq := [][]float64{} //データ格納用配列
-	reader := os.Stdin   //読み込み用のファイルポインタ
-	if len(os.Args) > 1 {
-		if r, err := os.Open(os.Args[1]); err == nil {
-			reader = r
-		}
-	}
-	//ファイルからのデータの読み込み
-	if err := json.NewDecoder(reader).Decode(&seq); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	_ = json.NewDecoder(os.Stdin).Decode(&seq)
 
 	initQueue()
 	fmt.Println(queue, head, tail, length)
 	for _, nums := range seq {
 		for _, v := range nums {
 			if enqueue(v) == 0 {
-				fmt.Fprintln(os.Stderr, "Enqueue error")
-				os.Exit(1)
+				panic("Enqueue error")
 			}
 		}
 		fmt.Println(queue, head, tail, length)

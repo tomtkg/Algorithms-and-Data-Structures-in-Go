@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	"mylib"
 	"testing"
 )
 
@@ -25,8 +25,8 @@ func Test_dequeueA(t *testing.T) {
 }
 func Test_dequeueB(t *testing.T) {
 	initQueue()
-	Test_enqueue(t)
 	var data float64
+	Test_enqueue(t)
 	for i := 0; i < QUEUESIZE; i++ {
 		if got := dequeue(&data); got != 1 {
 			t.Errorf("%d: dequeue() = %v, want %v", i, got, 1)
@@ -40,29 +40,20 @@ func Test_dequeueB(t *testing.T) {
 	}
 }
 func Example_main() {
-	r, w, _ := os.Pipe()
-	w.Write([]byte("[[3.14,1592,65],[3,5,-8,0.979],[3,5,-8,0.979]]"))
-	w.Close()
-	os.Stdin = r
-	initQueue()
+	seq := [][]float64{{3.14, 1592, 65}, {3, 5, -8, 0.979}}
+	mylib.SetStdin(seq)
 	main()
 	// Output:
-	// [0 0 0 0 0 0 0 0 0 0] 0 0 0
-	// [3.14 1592 65 0 0 0 0 0 0 0] 0 3 3
+	// [0 0 0 0 0 0 0 0 0 0] 0 0
+	// [3.14 1592 65 0 0 0 0 0 0 0] 0 3
 	// 3.14
 	// 1592
 	// 65
-	// [3.14 1592 65 0 0 0 0 0 0 0] 3 3 0
-	// [3.14 1592 65 3 5 -8 0.979 0 0 0] 3 7 4
+	// [3.14 1592 65 0 0 0 0 0 0 0] 3 3
+	// [3.14 1592 65 3 5 -8 0.979 0 0 0] 3 7
 	// 3
 	// 5
 	// -8
 	// 0.979
-	// [3.14 1592 65 3 5 -8 0.979 0 0 0] 7 7 0
-	// [0.979 1592 65 3 5 -8 0.979 3 5 -8] 7 1 4
-	// 3
-	// 5
-	// -8
-	// 0.979
-	// [0.979 1592 65 3 5 -8 0.979 3 5 -8] 1 1 0
+	// [3.14 1592 65 3 5 -8 0.979 0 0 0] 7 7
 }

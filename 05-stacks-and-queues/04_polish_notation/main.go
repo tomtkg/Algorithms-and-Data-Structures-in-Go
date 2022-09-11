@@ -7,6 +7,13 @@ import (
 	"strconv"
 )
 
+var m = map[string]func(float64, float64) float64{
+	"+": func(x, y float64) float64 { return x + y }, //加算
+	"-": func(x, y float64) float64 { return x - y }, //減算
+	"*": func(x, y float64) float64 { return x * y }, //乗算
+	"/": func(x, y float64) float64 { return x / y }, //除算
+}
+
 func main() {
 	s := bufio.NewScanner(os.Stdin)
 	ans := calc(s)
@@ -21,16 +28,9 @@ func calc(s *bufio.Scanner) float64 {
 			//演算子の場合
 			data1 := calc(s)
 			data2 := calc(s)
-			switch str {
-			case "+": //加算
-				return (data1 + data2)
-			case "-": //減算
-				return (data1 - data2)
-			case "*": //乗算
-				return (data1 * data2)
-			case "/": //除算
-				return (data1 / data2)
-			default:
+			if f, ok := m[str]; ok {
+				return f(data1, data2)
+			} else {
 				panic("Unknown operator")
 			}
 		} else {
