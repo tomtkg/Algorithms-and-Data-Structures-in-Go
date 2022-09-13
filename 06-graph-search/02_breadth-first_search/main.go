@@ -23,37 +23,25 @@ var (
 
 func bfSearch(start int) {
 	queue := [NODES]int{start}
-	head := 1
 	bfFlag[start] = 1
 
-	for tail := 0; tail < head; tail++ {
-		u := queue[tail]
+	for head, tail := 0, 1; head < tail; head++ {
+		u := queue[head]
 		for v := 0; v < NODES; v++ {
 			if matrix[u][v] == 1 && bfFlag[v] == 0 {
 				bfTree[edgeCnt].startNode = u
 				bfTree[edgeCnt].endNode = v
 				edgeCnt++
-				queue[head] = v
-				head++
+				queue[tail] = v
+				tail++
 				bfFlag[v] = 1
 			}
 		}
 	}
 }
-
 func main() {
 	graph := [][2]int{}
-	reader := os.Stdin
-	if len(os.Args) > 1 {
-		if r, err := os.Open(os.Args[1]); err == nil {
-			reader = r
-		}
-	}
-	//ファイルからのデータの読み込み
-	if err := json.NewDecoder(reader).Decode(&graph); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	_ = json.NewDecoder(os.Stdin).Decode(&graph)
 
 	//初期化
 	matrix = [NODES][NODES]int{}

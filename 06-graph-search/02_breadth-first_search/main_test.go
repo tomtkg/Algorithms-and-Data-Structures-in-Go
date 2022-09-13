@@ -1,9 +1,6 @@
 package main
 
-import (
-	"encoding/json"
-	"os"
-)
+import "mylib"
 
 func Example_mainA() {
 	graph := [][2]int{
@@ -21,11 +18,7 @@ func Example_mainA() {
 		{6, 7},
 		{7, 8},
 	}
-	s, _ := json.Marshal(graph)
-	r, w, _ := os.Pipe()
-	w.Write(s)
-	w.Close()
-	os.Stdin = r
+	mylib.SetStdin(graph)
 	main()
 	// Output:
 	// [0 1 0 1 0 0 0 0 0]
@@ -37,7 +30,7 @@ func Example_mainA() {
 	// [0 0 0 1 0 0 0 1 0]
 	// [0 0 0 1 0 1 1 0 1]
 	// [0 0 0 0 0 1 0 1 0]
-	// (0, 1)(1, 2)(2, 5)(5, 4)(5, 7)(7, 3)(3, 6)(7, 8)
+	// (0, 1)(0, 3)(1, 2)(1, 4)(3, 6)(3, 7)(2, 5)(7, 8)
 }
 func Example_mainB() {
 	graph := [][2]int{
@@ -54,11 +47,7 @@ func Example_mainB() {
 		{6, 7},
 		{7, 8},
 	}
-	s, _ := json.Marshal(graph)
-	r, w, _ := os.Pipe()
-	w.Write(s)
-	w.Close()
-	os.Stdin = r
+	mylib.SetStdin(graph)
 	main()
 	// Output:
 	// [0 1 0 1 0 0 0 0 0]
@@ -70,5 +59,5 @@ func Example_mainB() {
 	// [0 0 0 1 0 0 0 1 0]
 	// [0 0 0 0 1 0 1 0 1]
 	// [0 0 0 0 0 1 0 1 0]
-	// (0, 1)(1, 2)(2, 5)(5, 4)(4, 3)(3, 6)(6, 7)(7, 8)
+	// (0, 1)(0, 3)(1, 2)(1, 4)(3, 6)(2, 5)(4, 7)(5, 8)
 }

@@ -33,20 +33,9 @@ func dfSearch(u int) {
 		}
 	}
 }
-
 func main() {
 	graph := [][2]int{}
-	reader := os.Stdin
-	if len(os.Args) > 1 {
-		if r, err := os.Open(os.Args[1]); err == nil {
-			reader = r
-		}
-	}
-	//ファイルからのデータの読み込み
-	if err := json.NewDecoder(reader).Decode(&graph); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	_ = json.NewDecoder(os.Stdin).Decode(&graph)
 
 	//初期化
 	matrix = [NODES][NODES]int{}
