@@ -25,16 +25,17 @@ var (
 	matrix   [NODES][NODES]int //隣接行列
 )
 
-func logPrint() {
+func logPrint(num int) {
 	log := [3][NODES]int{}
 	for i, v := range node_dat {
 		log[0][i] = v.dist
 		log[1][i] = v.flag
 		log[2][i] = v.path
 	}
-	for _, v := range log {
-		fmt.Println(v)
-	}
+	fmt.Printf("node u = [%d]\n", num)
+	fmt.Printf("dist = %2d\n", log[0])
+	fmt.Printf("flag = %2d\n", log[1])
+	fmt.Printf("path = %2d\n", log[2])
 }
 
 func dijkstra(start, end int) {
@@ -53,8 +54,7 @@ func dijkstra(start, end int) {
 	node_dat[start].dist = 0
 	node_dat[start].path = END_OF_PATH
 
-	fmt.Println(start)
-	logPrint()
+	logPrint(start)
 
 	for u := start; u != end; {
 		min := INF
@@ -76,24 +76,13 @@ func dijkstra(start, end int) {
 				}
 			}
 		}
-		fmt.Println(u)
-		logPrint()
+		logPrint(u)
 	}
 }
 
 func main() {
 	graph := [][3]int{}
-	reader := os.Stdin
-	if len(os.Args) > 1 {
-		if r, err := os.Open(os.Args[1]); err == nil {
-			reader = r
-		}
-	}
-	//ファイルからのデータの読み込み
-	if err := json.NewDecoder(reader).Decode(&graph); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	_ = json.NewDecoder(os.Stdin).Decode(&graph)
 
 	//初期化
 	START, END = graph[0][0], graph[0][1]
