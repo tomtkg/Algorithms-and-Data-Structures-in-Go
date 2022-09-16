@@ -11,7 +11,7 @@ type fruit struct {
 	price int
 }
 
-type node struct {
+type node struct { //フルーツをノードとする二分木
 	value  *fruit
 	childL *node
 	childR *node
@@ -20,17 +20,7 @@ type node struct {
 func main() {
 	var root *node
 	var names []string
-	reader := os.Stdin
-	if len(os.Args) > 1 {
-		if r, err := os.Open(os.Args[1]); err == nil {
-			reader = r
-		}
-	}
-	//ファイルからのデータの読み込み
-	if err := json.NewDecoder(reader).Decode(&names); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	_ = json.NewDecoder(os.Stdin).Decode(&names)
 
 	// 各ノードを生成する
 	data := [15]*node{

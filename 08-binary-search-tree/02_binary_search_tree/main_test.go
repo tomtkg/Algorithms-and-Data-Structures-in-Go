@@ -1,17 +1,10 @@
 package main
 
-import (
-	"encoding/json"
-	"os"
-)
+import "mylib"
 
 func Example_main() {
 	names := []string{"apple", "lemon", "cranberry", "raspberry"}
-	r, w, _ := os.Pipe()
-	s, _ := json.Marshal(names)
-	w.Write(s)
-	w.Close()
-	os.Stdin = r
+	mylib.SetStdin(names)
 	main()
 	// Output:
 	// -- Generated binary search tree --

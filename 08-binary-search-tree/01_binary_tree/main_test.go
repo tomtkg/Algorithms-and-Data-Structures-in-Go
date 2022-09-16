@@ -1,8 +1,56 @@
 package main
 
-func Example_main() {
-	main()
+func Example_a() {
+	a()
 	// Output:
+	// 問8.1
+	// -- Binary tree --
+	// 	{Steven 1994}
+	// {Gary 1997}
+	// 		{Upton 1988}
+	// 	{Tyler 1985}
+	// 		{Martin 1973}
+}
+
+func Example_b() {
+	b()
+	// Output:
+	// 8.3節
+	// -- Binary search tree --
+	// 		{Bridget 1982}
+	// 	{Cindy 1983}
+	// 			{Jack 1995}
+	// 		{Luther 1989}
+	// 			{Maroon 1998}
+	// {Minks 1985}
+	// 		{Minuet 1978}
+	// 	{Rady 1998}
+	// 		{Ruby 1995}
+	// 			{Tiki 1982}
+	//
+	// {Minks 1985}
+	// {Cindy 1983}
+	// {Luther 1989}
+	// {Maroon 1998}
+	//
+	// -- Binary search tree --
+	// 		{Bridget 1982}
+	// 	{Cindy 1983}
+	// 				{Elpe 1982}
+	// 			{Jack 1995}
+	// 		{Luther 1989}
+	// 			{Maroon 1998}
+	// {Minks 1985}
+	// 		{Minuet 1978}
+	// 	{Rady 1998}
+	// 		{Ruby 1995}
+	// 			{Tiki 1982}
+}
+
+func Example_c() {
+	c()
+	// Output:
+	// 8.4節
 	// -- Generated binary search tree --
 	// 			{Dali 1904}
 	// 		{Hokusai 1760}
