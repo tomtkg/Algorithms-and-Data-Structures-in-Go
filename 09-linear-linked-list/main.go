@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
 type cell struct { //セル
 	value *int  //セルの値
@@ -55,14 +52,20 @@ func printCell(p *cell) {
 }
 
 func printMemory(p *cell) {
-	fmt.Fprintln(os.Stderr, p, nil, p.next)
+	fmt.Println(p, nil, p.next)
 	for c := p.next; c.value != nil; c = c.next {
-		fmt.Fprintln(os.Stderr, c, *c.value, c.next)
+		fmt.Println(c, *c.value, c.next)
 	}
-	fmt.Fprintln(os.Stderr)
 }
 
 func main() {
+	a() //問9.1
+	b() //問9.2
+	c() //章末問題
+}
+
+func a() {
+	fmt.Println("問9.1")
 	p := &cell{nil, &cell{}}
 	for _, num := range []int{1, 6, 10, 15, 21, 39, 44, 52, 71, 89, 93} {
 		insertCell(p, num)
@@ -70,16 +73,22 @@ func main() {
 	printCell(p)
 	insertOrderCell(p, 9)
 	printCell(p)
+}
 
-	p = &cell{nil, &cell{}}
+func b() {
+	fmt.Println("問9.2")
+	p := &cell{nil, &cell{}}
 	for _, num := range []int{4, 1, 7, 9, 0, 6, 3, 5, 8, 2} {
 		insertOrderCell(p, num)
 	}
 	printCell(p)
 	deleteEvenCell(p)
 	printCell(p)
+}
 
-	p = &cell{nil, &cell{}}
+func c() {
+	fmt.Println("章末問題")
+	p := &cell{nil, &cell{}}
 	for _, num := range []int{84, 95, 78, 27, 56} {
 		insertOrderCell(p, num)
 	}
