@@ -7,4 +7,8 @@ func Example_main() {
 	// 6
 	// x = r
 	// 4
+	// x = a
+	// 0
+	// x = z
+	// 9
 }

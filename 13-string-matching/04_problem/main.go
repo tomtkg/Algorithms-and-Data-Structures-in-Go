@@ -9,10 +9,11 @@ func main() {
 	w := []rune("cutexecution")
 
 	makePatternMatchingTable(w)
+	fmt.Println("j W T j-T[j]")
 	for j, v := range w {
 		fmt.Printf("%d %c %d %d\n", j, v, table[j], j-table[j])
 	}
-	fmt.Println()
+	fmt.Println("\ni j")
 	kmpMatching(s, w)
 }
 
@@ -24,7 +25,7 @@ func kmpMatching(s, w []rune) int {
 			if j == len(w) {
 				return i
 			}
-		} else {
+		} else { //単語を指定された分だけずらして，照合しなおす
 			i += j - table[j]
 			if j > 0 {
 				j = table[j]

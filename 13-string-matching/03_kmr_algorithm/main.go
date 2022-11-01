@@ -1,18 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+)
 
 var table [20]int
 
 func main() {
-	s := []rune("algorithm")
-	w := []rune("go")
-	fmt.Printf("text = %c\n", s)
-	fmt.Printf("word = %c\n", w)
+	problems := [][2]string{}
+	_ = json.NewDecoder(os.Stdin).Decode(&problems)
 
-	makePatternMatchingTable(w)
-	ans := kmpMatching(s, w)
-	fmt.Println(ans)
+	for _, p := range problems {
+		fmt.Printf("text = %s\n", p[0])
+		fmt.Printf("word = %s\n", p[1])
+		makePatternMatchingTable([]rune(p[1]))
+		ans := kmpMatching([]rune(p[0]), []rune(p[1]))
+		fmt.Println(ans)
+	}
 }
 
 func kmpMatching(s, w []rune) int {
@@ -22,7 +28,7 @@ func kmpMatching(s, w []rune) int {
 			if j == len(w) {
 				return i
 			}
-		} else {
+		} else { //単語を指定された分だけずらして，照合しなおす
 			i += j - table[j]
 			if j > 0 {
 				j = table[j]

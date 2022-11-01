@@ -3,6 +3,7 @@ package main
 func Example_main() {
 	main()
 	// Output:
+	// j W T j-T[j]
 	// 0 c -1 1
 	// 1 u 0 1
 	// 2 t 0 2
@@ -16,6 +17,7 @@ func Example_main() {
 	// 10 o 0 10
 	// 11 n 0 11
 	//
+	// i j
 	// 0 0
 	// 0 1
 	// 0 2
