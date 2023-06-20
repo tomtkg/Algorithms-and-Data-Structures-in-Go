@@ -2,7 +2,6 @@
 
 ![](https://img.shields.io/github/go-mod/go-version/tomtkg/Algorithms-and-Data-Structures-in-Go)
 ![](https://img.shields.io/github/languages/top/tomtkg/Algorithms-and-Data-Structures-in-Go)
-![](https://img.shields.io/github/license/tomtkg/Algorithms-and-Data-Structures-in-Go)
 [![Go](https://github.com/tomtkg/Algorithms-and-Data-Structures-in-Go/actions/workflows/go.yml/badge.svg)](https://github.com/tomtkg/Algorithms-and-Data-Structures-in-Go/actions/workflows/go.yml)
 
 ![](https://img.shields.io/github/languages/code-size/tomtkg/Algorithms-and-Data-Structures-in-Go)
